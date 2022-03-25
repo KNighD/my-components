@@ -1,7 +1,7 @@
-import './App.css'
+import { Button } from './components/button'
 
 function App() {
-  return <div className="App">my vite react ts template</div>
+  return <Button />
 }
 
 export default App
