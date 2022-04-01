@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { ButtonProps } from './typings'
 
-export default function Button(props: Partial<ButtonProps>) {
+const Button = (props: Partial<ButtonProps>) => {
   const { type = 'default', className, style } = props
   const classes = classNames('btn', className, {
     link: type === 'link',
@@ -24,3 +24,4 @@ export default function Button(props: Partial<ButtonProps>) {
 }
 
 Button.displayName = 'Button'
+export default Button
