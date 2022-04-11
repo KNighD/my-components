@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@rellika/ui-components": ["libs/ui-components/src/index.ts"],
-      "@rellika/ui-theme": ["libs/ui-theme/src/index.ts"]
+      "@rellika/ui-themes": ["libs/ui-themes/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

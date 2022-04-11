@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'ui-theme',
+  displayName: 'ui-themes',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/ui-theme',
+  coverageDirectory: '../../coverage/libs/ui-themes',
 };

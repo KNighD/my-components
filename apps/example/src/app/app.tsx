@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { UiComponents } from '@rellika/ui-components';
+import { Button } from '@rellika/ui-components';
 
 const StyledApp = styled.div`
   // Your style here
@@ -8,7 +8,7 @@ const StyledApp = styled.div`
 export function App() {
   return (
     <StyledApp>
-      <UiComponents />
+      <Button />
     </StyledApp>
   );
 }
