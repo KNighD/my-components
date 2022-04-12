@@ -1,4 +1,4 @@
-import { ButtonProps } from './typings';
+import { ButtonProps } from './typings.d';
 import { StyledAnchorButton, StyledNativeButton } from './styled';
 
 export default function Button(props: ButtonProps) {
