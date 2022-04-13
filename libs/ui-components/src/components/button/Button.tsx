@@ -6,5 +6,9 @@ export default function Button(props: ButtonProps) {
   if (type === 'link') {
     return <StyledAnchorButton {...restProps}>{children}</StyledAnchorButton>;
   }
-  return <StyledNativeButton {...restProps}>{children}</StyledNativeButton>;
+  return (
+    <StyledNativeButton className="RuiButton-nativeBtn" {...restProps}>
+      {children}
+    </StyledNativeButton>
+  );
 }

@@ -3,6 +3,9 @@ import { ThemeType } from '../typings.d';
 const base = {
   lineHeight: '24px',
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+  borderWidth: '1px',
+  fontSize: '16px',
+  borderRadius: '4px',
 };
 
 const palette = {
@@ -29,7 +32,7 @@ const palette = {
   cyan: '#17a2b8',
 };
 
-const status = {
+const colors = {
   primary: palette['blue'],
   secondary: palette['gray-600'],
   success: palette['green'],
@@ -42,11 +45,22 @@ const status = {
 
 const defaultTheme: ThemeType = {
   palette,
-  status,
+  colors,
+  body: {
+    color: palette['gray-900'],
+  },
   btn: {
     fontWeight: 400,
     lineHeight: base.lineHeight,
     fontFamily: base.fontFamily,
+    borderWidth: base.borderWidth,
+    paddingX: '12px',
+    paddingY: '6px',
+    fontSize: base.fontSize,
+    borderRadius: base.borderRadius,
+    boxShadow: `inset 0 1px 0 rgba(${palette.white}, .15), 0 1px 1px rgba(${palette.black}, .075)`,
+    transition:
+      'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
   },
 };
 

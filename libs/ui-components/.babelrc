@@ -8,5 +8,15 @@
       }
     ]
   ],
-  "plugins": [["styled-components", { "pure": true, "ssr": true }]]
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "meaninglessFileNames": ["index", "styled", "Styled"],
+        "namespace": "Rui",
+        "pure": true,
+        "ssr": true
+      }
+    ]
+  ]
 }
