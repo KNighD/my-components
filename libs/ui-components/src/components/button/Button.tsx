@@ -1,14 +1,27 @@
+import classNames from 'classnames';
 import { ButtonProps } from './typings.d';
 import { StyledAnchorButton, StyledNativeButton } from './styled';
 
 export default function Button(props: ButtonProps) {
-  const { btnType = 'default', children, ...restProps } = props;
+  const { btnType = 'default', children, className, ...restProps } = props;
+
   if (btnType === 'link') {
-    return <StyledAnchorButton {...restProps}>{children}</StyledAnchorButton>;
+    return (
+      <StyledAnchorButton
+        className={classNames('RuiButton-anchorBtn', className, {
+          disabled: restProps.disabled,
+        })}
+        {...restProps}
+      >
+        {children}
+      </StyledAnchorButton>
+    );
   }
   return (
     <StyledNativeButton
-      className="RuiButton-nativeBtn"
+      className={classNames('RuiButton-nativeBtn', className, {
+        disabled: restProps.disabled,
+      })}
       btnType={btnType}
       {...restProps}
     >

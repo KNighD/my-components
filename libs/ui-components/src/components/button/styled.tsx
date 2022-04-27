@@ -34,13 +34,11 @@ const buttonStyle = (
     background: ${hoverBackground};
     border-color: ${hoverBorder};
   }
-  ${(props) =>
-    props.disabled &&
-    css`
-      color: ${color};
-      background: ${background};
-      border-color: ${border};
-    `}
+  &.disabled {
+    color: ${color};
+    background: ${background};
+    border-color: ${border};
+  }
 `;
 
 const disabled = css`
@@ -74,6 +72,7 @@ const BaseButtonCss = css<ButtonProps>`
   box-shadow: ${(props) => props.theme.btn.boxShadow};
   cursor: pointer;
   transition: ${(props) => props.theme.btn.transition};
+  user-select: none;
 
   ${(props) => props.disabled && disabled}
 
@@ -137,13 +136,14 @@ export const StyledAnchorButton = styled.a`
     text-decoration: ${(props) => props.theme.btn.linkHoverDecoration};
   }
   &:focus {
-    decoration: ${(props) => props.theme.btn.linkHoverDecoration};
+    text-decoration: ${(props) => props.theme.btn.linkHoverDecoration};
     box-shadow: none;
   }
-  ${(props) =>
-    props.disabled &&
-    css`
-      color: ${(props) => props.theme.btn.linkDisabledColor};
+  &.disabled {
+    color: ${(props) => props.theme.btn.linkDisabledColor};
+    text-decoration: none;
+    & > * {
       pointer-events: none;
-    `}
+    }
+  }
 `;
