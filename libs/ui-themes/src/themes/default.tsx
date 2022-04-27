@@ -1,12 +1,5 @@
+import { darken } from 'polished';
 import { ThemeType } from '../typings.d';
-
-const base = {
-  lineHeight: '24px',
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-  borderWidth: '1px',
-  fontSize: '16px',
-  borderRadius: '4px',
-};
 
 const palette = {
   white: '#fff',
@@ -43,6 +36,23 @@ const colors = {
   dark: palette['gray-800'],
 };
 
+const base = {
+  lineHeight: '24px',
+  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+  borderWidth: '1px',
+  fontSize: '16px',
+  borderRadius: '4px',
+  fontSizeLg: '20px',
+  fontSizeSm: '14px',
+  borderRadiusLg: '4.8px',
+  borderRadiusSm: '3.2px',
+  fontWeight: '400',
+  linkColor: colors.primary,
+  linkDecoration: 'none',
+  linkHoverColor: darken(0.15, colors.primary),
+  linkHoverDecoration: 'underline',
+};
+
 const defaultTheme: ThemeType = {
   palette,
   colors,
@@ -56,11 +66,25 @@ const defaultTheme: ThemeType = {
     borderWidth: base.borderWidth,
     paddingX: '12px',
     paddingY: '6px',
+    paddingXLg: '16px',
+    paddingYLg: '8px',
+    paddingXSm: '8px',
+    paddingYSm: '4px',
     fontSize: base.fontSize,
+    fontSizeLg: base.fontSizeLg,
+    fontSizeSm: base.fontSizeSm,
     borderRadius: base.borderRadius,
+    borderRadiusLg: base.borderRadiusLg,
+    borderRadiusSm: base.borderRadiusSm,
     boxShadow: `inset 0 1px 0 rgba(${palette.white}, .15), 0 1px 1px rgba(${palette.black}, .075)`,
     transition:
       'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
+    disabledOpacity: 0.65,
+    linkColor: base.linkColor,
+    linkDecoration: base.linkDecoration,
+    linkHoverColor: base.linkHoverColor,
+    linkHoverDecoration: base.linkHoverDecoration,
+    linkDisabledColor: palette['gray-600'],
   },
 };
 

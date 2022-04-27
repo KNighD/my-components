@@ -1,16 +1,23 @@
 import React from 'react';
 
 export type ButtonSize = 'large' | 'small' | 'default';
+export type ButtonType = 'primary' | 'link' | 'default';
 
 interface ButtonBaseProps {
-  type?: 'primary' | 'link' | 'default';
+  btnType?: ButtonType;
   size?: ButtonSize;
+  danger?: boolean;
+  disabled?: boolean;
 }
 
-export type AnchorButtonProps = ButtonBaseProps &
-  Omit<React.AnchorHTMLAttributes<HTMLElement>, 'type'>;
+export type AnchorButtonProps = {
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & ButtonBaseProps &
+  Omit<React.AnchorHTMLAttributes<HTMLElement>, 'type' | 'onClick'>;
 
-export type NativeButtonProps = ButtonBaseProps &
-  Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type'>;
+export type NativeButtonProps = {
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & ButtonBaseProps &
+  Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type' | 'onClick'>;
 
 export type ButtonProps = AnchorButtonProps & NativeButtonProps;
