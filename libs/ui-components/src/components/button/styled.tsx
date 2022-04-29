@@ -85,7 +85,7 @@ const BaseButtonCss = css<ButtonProps>`
       props.theme.btn.borderRadiusLg
     )}
 
-    ${(props) =>
+  ${(props) =>
     props.size === 'small' &&
     buttonSize(
       props.theme.btn.paddingYSm,
@@ -94,7 +94,7 @@ const BaseButtonCss = css<ButtonProps>`
       props.theme.btn.borderRadiusSm
     )}
 
-    ${(props) =>
+  ${(props) =>
     props.btnType === 'primary' &&
     buttonStyle(
       props.theme.colors.primary,
@@ -102,15 +102,7 @@ const BaseButtonCss = css<ButtonProps>`
       props.theme.palette.white
     )}
 
-    ${(props) =>
-    props.danger &&
-    buttonStyle(
-      props.theme.colors.danger,
-      props.theme.colors.danger,
-      props.theme.palette.white
-    )}
-
-    ${(props) =>
+  ${(props) =>
     props.btnType === 'default' &&
     buttonStyle(
       props.theme.palette.white,
@@ -124,6 +116,23 @@ const BaseButtonCss = css<ButtonProps>`
 
 export const StyledNativeButton = styled.button<ButtonProps>`
   ${BaseButtonCss}
+  &.danger {
+    border-color: ${(props) => props.theme.colors.danger};
+    color: ${(props) => props.theme.colors.danger};
+    &:hover {
+      border-color: ${(props) => lighten(0.1, props.theme.colors.danger)};
+      color: ${(props) => lighten(0.1, props.theme.colors.danger)};
+    }
+  }
+  &.danger {
+    ${(props) =>
+      props.btnType === 'primary' &&
+      buttonStyle(
+        props.theme.colors.danger,
+        props.theme.colors.danger,
+        props.theme.palette.white
+      )}
+  }
 `;
 
 export const StyledAnchorButton = styled.a`
@@ -138,6 +147,12 @@ export const StyledAnchorButton = styled.a`
   &:focus {
     text-decoration: ${(props) => props.theme.btn.linkHoverDecoration};
     box-shadow: none;
+  }
+  &.danger {
+    color: ${(props) => props.theme.colors.danger};
+    &:hover {
+      color: ${(props) => lighten(0.1, props.theme.colors.danger)};
+    }
   }
   &.disabled {
     color: ${(props) => props.theme.btn.linkDisabledColor};
