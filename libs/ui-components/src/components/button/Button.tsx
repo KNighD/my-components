@@ -23,7 +23,7 @@ export default function Button(props: ButtonProps) {
     <StyledNativeButton
       className={classNames('RuiButton-nativeBtn', className, {
         disabled: restProps.disabled,
-        danger: restProps.danger
+        danger: restProps.danger,
       })}
       btnType={btnType}
       {...restProps}
@@ -33,6 +33,10 @@ export default function Button(props: ButtonProps) {
   );
 }
 
-Button.defaultProps = {
+StyledAnchorButton.defaultProps = {
+  theme: defaultTheme,
+};
+
+StyledNativeButton.defaultProps = {
   theme: defaultTheme,
 };

@@ -41,124 +41,126 @@ const buttonStyle = (
   }
 `;
 
-const disabled = css`
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: ${(props) => props.theme.btn.disabledOpacity};
-  > * {
-    pointer-events: none;
-  }
+const disabledStyle = css`
+  ${({ theme }) => css`
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: ${theme.btn.disabledOpacity};
+    > * {
+      pointer-events: none;
+    }
+  `}
 `;
 
 const BaseButtonCss = css<ButtonProps>`
-  position: relative;
-  display: inline-block;
-  color: ${(props) => props.theme.body.color};
-  font-weight: ${(props) => props.theme.btn.fontWeight};
-  line-height: ${(props) => props.theme.btn.lineHeight};
-  font-family: ${(props) => props.theme.btn.fontFamily};
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: middle;
-  background-image: none;
-  border: ${(props) => props.theme.btn.borderWidth} solid transparent;
-  ${(props) =>
-    buttonSize(
-      props.theme.btn.paddingY,
-      props.theme.btn.paddingX,
-      props.theme.btn.fontSize,
-      props.theme.btn.borderRadius
-    )};
-  box-shadow: ${(props) => props.theme.btn.boxShadow};
-  cursor: pointer;
-  transition: ${(props) => props.theme.btn.transition};
-  user-select: none;
-
-  ${(props) => props.disabled && disabled}
-
-  ${(props) =>
-    props.size === 'large' &&
-    buttonSize(
-      props.theme.btn.paddingYLg,
-      props.theme.btn.paddingXLg,
-      props.theme.btn.fontSizeLg,
-      props.theme.btn.borderRadiusLg
+  ${({ theme, disabled, size, btnType }) => css`
+    position: relative;
+    display: inline-block;
+    color: ${theme.body.color};
+    font-weight: ${theme.btn.fontWeight};
+    line-height: ${theme.btn.lineHeight};
+    font-family: ${theme.btn.fontFamily};
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: ${theme.btn.borderWidth} solid transparent;
+    ${buttonSize(
+      theme.btn.paddingY,
+      theme.btn.paddingX,
+      theme.btn.fontSize,
+      theme.btn.borderRadius
     )}
 
-  ${(props) =>
-    props.size === 'small' &&
+    box-shadow: ${theme.btn.boxShadow};
+    cursor: pointer;
+    transition: ${theme.btn.transition};
+    user-select: none;
+
+    ${disabled && disabledStyle}
+
+    ${size === 'large' &&
     buttonSize(
-      props.theme.btn.paddingYSm,
-      props.theme.btn.paddingXSm,
-      props.theme.btn.fontSizeSm,
-      props.theme.btn.borderRadiusSm
+      theme.btn.paddingYLg,
+      theme.btn.paddingXLg,
+      theme.btn.fontSizeLg,
+      theme.btn.borderRadiusLg
     )}
 
-  ${(props) =>
-    props.btnType === 'primary' &&
+    ${size === 'small' &&
+    buttonSize(
+      theme.btn.paddingYSm,
+      theme.btn.paddingXSm,
+      theme.btn.fontSizeSm,
+      theme.btn.borderRadiusSm
+    )}
+
+    ${btnType === 'primary' &&
     buttonStyle(
-      props.theme.colors.primary,
-      props.theme.colors.primary,
-      props.theme.palette.white
+      theme.colors.primary,
+      theme.colors.primary,
+      theme.palette.white
     )}
 
-  ${(props) =>
-    props.btnType === 'default' &&
+    ${btnType === 'default' &&
     buttonStyle(
-      props.theme.palette.white,
-      props.theme.palette['gray-400'],
-      props.theme.body.color,
-      props.theme.palette.white,
-      props.theme.colors.primary,
-      props.theme.colors.primary
+      theme.palette.white,
+      theme.palette['gray-400'],
+      theme.body.color,
+      theme.palette.white,
+      theme.colors.primary,
+      theme.colors.primary
     )}
+  `}
 `;
 
 export const StyledNativeButton = styled.button<ButtonProps>`
-  ${BaseButtonCss}
-  &.danger {
-    border-color: ${(props) => props.theme.colors.danger};
-    color: ${(props) => props.theme.colors.danger};
-    &:hover {
-      border-color: ${(props) => lighten(0.1, props.theme.colors.danger)};
-      color: ${(props) => lighten(0.1, props.theme.colors.danger)};
-    }
-  }
-  &.danger {
-    ${(props) =>
-      props.btnType === 'primary' &&
+  ${BaseButtonCss};
+  ${({ theme, btnType }) => css`
+    &.danger {
+      border-color: ${theme.colors.danger};
+      color: ${theme.colors.danger};
+      &:hover {
+        border-color: ${lighten(0.1, theme.colors.danger)};
+        color: ${lighten(0.1, theme.colors.danger)};
+      }
+
+      ${btnType === 'primary' &&
       buttonStyle(
-        props.theme.colors.danger,
-        props.theme.colors.danger,
-        props.theme.palette.white
+        theme.colors.danger,
+        theme.colors.danger,
+        theme.palette.white
       )}
-  }
+    }
+  `}
 `;
 
 export const StyledAnchorButton = styled.a`
   ${BaseButtonCss}
-  color: ${(props) => props.theme.btn.linkColor};
-  text-decoration: ${(props) => props.theme.btn.linkDecoration};
-  box-shadow: none;
-  &:hover {
-    color: ${(props) => props.theme.btn.linkHoverColor};
-    text-decoration: ${(props) => props.theme.btn.linkHoverDecoration};
-  }
-  &:focus {
-    text-decoration: ${(props) => props.theme.btn.linkHoverDecoration};
+  ${({ theme }) => css`
+    color: ${theme.btn.linkColor};
+    text-decoration: ${theme.btn.linkDecoration};
     box-shadow: none;
-  }
-  &.danger {
-    color: ${(props) => props.theme.colors.danger};
     &:hover {
-      color: ${(props) => lighten(0.1, props.theme.colors.danger)};
+      color: ${theme.btn.linkHoverColor};
+      text-decoration: ${theme.btn.linkHoverDecoration};
     }
-  }
-  &.disabled {
-    color: ${(props) => props.theme.btn.linkDisabledColor};
-    text-decoration: none;
-    & > * {
-      pointer-events: none;
+    &:focus {
+      text-decoration: ${theme.btn.linkHoverDecoration};
+      box-shadow: none;
     }
-  }
+    &.danger {
+      color: ${theme.colors.danger};
+      &:hover {
+        color: ${lighten(0.1, theme.colors.danger)};
+      }
+    }
+    &.disabled {
+      color: ${theme.btn.linkDisabledColor};
+      text-decoration: none;
+      & > * {
+        pointer-events: none;
+      }
+    }
+  `}
 `;
