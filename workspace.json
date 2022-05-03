@@ -1,8 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "example": "apps/example",
-    "example-e2e": "apps/example-e2e",
     "ui-components": "libs/ui-components",
     "ui-components-e2e": "apps/ui-components-e2e",
     "ui-themes": "libs/ui-themes"

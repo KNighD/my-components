@@ -80,11 +80,13 @@ const defaultTheme: ThemeType = {
     transition:
       'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
     disabledOpacity: 0.65,
+    borderColor: palette['gray-400'],
+    disabledColor: palette['gray-500'],
+    disabledBackground: palette['gray-200'],
     linkColor: base.linkColor,
     linkDecoration: base.linkDecoration,
     linkHoverColor: base.linkHoverColor,
     linkHoverDecoration: base.linkHoverDecoration,
-    linkDisabledColor: palette['gray-600'],
   },
 };
 

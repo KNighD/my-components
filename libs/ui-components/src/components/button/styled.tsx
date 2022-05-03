@@ -13,47 +13,8 @@ const buttonSize = (
   border-radius: ${borderRadius};
 `;
 
-const buttonStyle = (
-  background: string,
-  border: string,
-  color: string,
-  hoverBackground = lighten(0.075, background),
-  hoverBorder = lighten(0.1, border),
-  hoverColor = color
-) => css<ButtonProps>`
-  color: ${color};
-  background: ${background};
-  border-color: ${border};
-  &:hover {
-    color: ${hoverColor};
-    background: ${hoverBackground};
-    border-color: ${hoverBorder};
-  }
-  &:focus {
-    color: ${hoverColor};
-    background: ${hoverBackground};
-    border-color: ${hoverBorder};
-  }
-  &.disabled {
-    color: ${color};
-    background: ${background};
-    border-color: ${border};
-  }
-`;
-
-const disabledStyle = css`
-  ${({ theme }) => css`
-    cursor: not-allowed;
-    box-shadow: none;
-    opacity: ${theme.btn.disabledOpacity};
-    > * {
-      pointer-events: none;
-    }
-  `}
-`;
-
 const BaseButtonCss = css<ButtonProps>`
-  ${({ theme, disabled, size, btnType }) => css`
+  ${({ theme }) => css`
     position: relative;
     display: inline-block;
     color: ${theme.body.color};
@@ -65,6 +26,20 @@ const BaseButtonCss = css<ButtonProps>`
     vertical-align: middle;
     background-image: none;
     border: ${theme.btn.borderWidth} solid transparent;
+
+    box-shadow: ${theme.btn.boxShadow};
+    cursor: pointer;
+    transition: ${theme.btn.transition};
+    user-select: none;
+
+    &.disabled {
+      cursor: not-allowed;
+      box-shadow: none;
+      > * {
+        pointer-events: none;
+      }
+    }
+
     ${buttonSize(
       theme.btn.paddingY,
       theme.btn.paddingX,
@@ -72,65 +47,80 @@ const BaseButtonCss = css<ButtonProps>`
       theme.btn.borderRadius
     )}
 
-    box-shadow: ${theme.btn.boxShadow};
-    cursor: pointer;
-    transition: ${theme.btn.transition};
-    user-select: none;
-
-    ${disabled && disabledStyle}
-
-    ${size === 'large' &&
-    buttonSize(
-      theme.btn.paddingYLg,
-      theme.btn.paddingXLg,
-      theme.btn.fontSizeLg,
-      theme.btn.borderRadiusLg
-    )}
-
-    ${size === 'small' &&
-    buttonSize(
-      theme.btn.paddingYSm,
-      theme.btn.paddingXSm,
-      theme.btn.fontSizeSm,
-      theme.btn.borderRadiusSm
-    )}
-
-    ${btnType === 'primary' &&
-    buttonStyle(
-      theme.colors.primary,
-      theme.colors.primary,
-      theme.palette.white
-    )}
-
-    ${btnType === 'default' &&
-    buttonStyle(
-      theme.palette.white,
-      theme.palette['gray-400'],
-      theme.body.color,
-      theme.palette.white,
-      theme.colors.primary,
-      theme.colors.primary
-    )}
+    &.large {
+      ${buttonSize(
+        theme.btn.paddingYLg,
+        theme.btn.paddingXLg,
+        theme.btn.fontSizeLg,
+        theme.btn.borderRadiusLg
+      )}
+    }
+    &.small {
+      ${buttonSize(
+        theme.btn.paddingYSm,
+        theme.btn.paddingXSm,
+        theme.btn.fontSizeSm,
+        theme.btn.borderRadiusSm
+      )}
+    }
   `}
 `;
 
 export const StyledNativeButton = styled.button<ButtonProps>`
   ${BaseButtonCss};
-  ${({ theme, btnType }) => css`
-    &.danger {
-      border-color: ${theme.colors.danger};
-      color: ${theme.colors.danger};
+  ${({ theme }) => css`
+    &.default {
+      background-color: unset;
+      color: ${theme.body.color};
+      border-color: ${theme.btn.borderColor};
       &:hover {
-        border-color: ${lighten(0.1, theme.colors.danger)};
-        color: ${lighten(0.1, theme.colors.danger)};
+        color: ${theme.colors.primary};
+        border-color: ${theme.colors.primary};
       }
-
-      ${btnType === 'primary' &&
-      buttonStyle(
-        theme.colors.danger,
-        theme.colors.danger,
-        theme.palette.white
-      )}
+      &.danger {
+        border-color: ${theme.colors.danger};
+        color: ${theme.colors.danger};
+        &:hover {
+          border-color: ${lighten(0.1, theme.colors.danger)};
+          color: ${lighten(0.1, theme.colors.danger)};
+        }
+      }
+      &.disabled {
+        color: ${theme.btn.disabledColor};
+        background-color: ${theme.btn.disabledBackground};
+        border-color: ${theme.btn.borderColor};
+        &.danger {
+          &:hover {
+            color: ${theme.btn.disabledColor};
+            border-color: ${theme.btn.borderColor};
+            background-color: ${theme.btn.disabledBackground};
+          }
+        }
+      }
+    }
+    &.primary {
+      color: ${theme.palette.white};
+      background-color: ${theme.colors.primary};
+      &:hover {
+        background-color: ${lighten(0.075, theme.colors.primary)};
+      }
+      &.danger {
+        color: ${theme.palette.white};
+        background-color: ${theme.colors.danger};
+        &:hover {
+          background-color: ${lighten(0.075, theme.colors.danger)};
+        }
+      }
+      &.disabled {
+        color: ${theme.btn.disabledColor};
+        background-color: ${theme.btn.disabledBackground};
+        border-color: ${theme.btn.borderColor};
+        &.danger {
+          &:hover {
+            background-color: ${theme.btn.disabledBackground};
+          }
+        }
+      }
     }
   `}
 `;
@@ -156,10 +146,15 @@ export const StyledAnchorButton = styled.a`
       }
     }
     &.disabled {
-      color: ${theme.btn.linkDisabledColor};
+      color: ${theme.btn.disabledColor};
       text-decoration: none;
       & > * {
         pointer-events: none;
+      }
+      &.danger {
+        &:hover {
+          color: ${theme.btn.disabledColor};
+        }
       }
     }
   `}

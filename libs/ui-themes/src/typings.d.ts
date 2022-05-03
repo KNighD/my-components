@@ -61,6 +61,8 @@ export interface ThemeType {
     linkDecoration: string;
     linkHoverColor: string;
     linkHoverDecoration: string;
-    linkDisabledColor: string;
+    disabledColor: string;
+    disabledBackground: string;
+    borderColor: string;
   };
 }
