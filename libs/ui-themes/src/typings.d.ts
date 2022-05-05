@@ -1,3 +1,11 @@
+import React from 'react';
+import type { PartialDeep } from 'type-fest';
+
+export interface ThemeConfigProviderProps {
+  children: React.ReactElement;
+  themeOverrides: PartialDeep<ThemeType>;
+}
+
 export interface ThemeType {
   palette: {
     white: string;

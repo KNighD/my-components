@@ -4,7 +4,7 @@ import { ButtonProps } from './typings';
 
 export default {
   component: Button,
-  title: '按钮',
+  title: '组件/按钮',
 } as Meta;
 
 const Template = (args: ButtonProps) => <Button {...args}>自定义按钮</Button>;
@@ -21,13 +21,44 @@ export const Primary = () => (
 
 export const Disabled = () => (
   <div>
-    <Button btnType="primary" disabled>
-      Primary Button
-    </Button>
-    <Button disabled>Default Button</Button>
-    <Button btnType="link" disabled>
-      Link Button
-    </Button>
+    <div>
+      <Button btnType="primary">Primary Button</Button>
+      <Button btnType="primary" disabled>
+        Disabled Primary Button
+      </Button>
+    </div>
+    <div>
+      <Button>Default Button</Button>
+      <Button disabled>Disabled Default Button</Button>
+    </div>
+    <div>
+      <Button btnType="link">Link Button</Button>
+      <Button btnType="link" disabled>
+        Disabled Link Button
+      </Button>
+    </div>
+    <div>
+      <Button btnType="primary" danger>
+        Danger Primary Button
+      </Button>
+      <Button btnType="primary" danger disabled>
+        Disabled Danger Primary Button
+      </Button>
+    </div>
+    <div>
+      <Button danger>Danger Default Button</Button>
+      <Button danger disabled>
+        Disabled Danger Default Button
+      </Button>
+    </div>
+    <div>
+      <Button btnType="link" danger>
+        Danger Link Button
+      </Button>
+      <Button btnType="link" danger disabled>
+        Disabled Danger Link Button
+      </Button>
+    </div>
   </div>
 );
 

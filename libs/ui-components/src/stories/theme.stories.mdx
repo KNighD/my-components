@@ -1,0 +1,19 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ThemeConfigProvider } from '@rellika/ui-themes';
+import { Button } from '../components/button';
+
+<Meta title="主题定制" />
+
+# 定制主题
+
+通常情况下不需要使用到 `ThemeConfigProvider`，当需要调整主题是就可以使用到这个组件。
+
+## 覆盖主题变量
+
+<Canvas>
+  <Story name="ThemeConfigProvider">
+    <ThemeConfigProvider themeOverrides={{ colors: { primary: '#52c41a' } }}>
+      <Button btnType="primary">调整主题色为绿色</Button>
+    </ThemeConfigProvider>
+  </Story>
+</Canvas>

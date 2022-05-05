@@ -1,4 +1,4 @@
-import { darken } from 'polished';
+import { darken, modularScale } from 'polished';
 import { ThemeType } from '../typings.d';
 
 const palette = {
@@ -42,10 +42,10 @@ const base = {
   borderWidth: '1px',
   fontSize: '16px',
   borderRadius: '4px',
-  fontSizeLg: '20px',
-  fontSizeSm: '14px',
-  borderRadiusLg: '4.8px',
-  borderRadiusSm: '3.2px',
+  fontSizeLg: modularScale(1, '16px', 1.25),
+  fontSizeSm: modularScale(1, '16px', 0.875),
+  borderRadiusLg: modularScale(1, '4px', 1.2),
+  borderRadiusSm: modularScale(1, '4px', 0.8),
   fontWeight: '400',
   linkColor: colors.primary,
   linkDecoration: 'none',
